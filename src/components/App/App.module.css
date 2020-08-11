@@ -1,0 +1,15 @@
+.app {
+  background-color: #c5cae9;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'PTSans', Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
