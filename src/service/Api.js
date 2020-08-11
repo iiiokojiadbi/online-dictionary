@@ -14,20 +14,16 @@ export default class DictionaryApi {
       method: 'GET',
       headers: this._headers,
     });
-
     if (!response.ok) {
       throw new Error(`Could not fetch ${url}, received ${response.status}`);
     }
-
     const body = await response.json();
     return body;
   };
 
   getListWords = async ({ word }) => {
     const url = `?letterPattern=^${word}&${this._pronunciationPattern}&${this._limitWords}&${this._countPage}`;
-    const response = await this._getResource({ url }).then(
-      ({ results }) => results.data
-    );
+    const response = this._transformListItem(await this._getResource({ url }));
     return response;
   };
 
@@ -35,4 +31,6 @@ export default class DictionaryApi {
     const response = await this._getResource({ url: word });
     return response;
   };
+
+  _transformListItem = async (responseData) => responseData.results.data;
 }
