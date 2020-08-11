@@ -32,5 +32,5 @@ export default class DictionaryApi {
     return response;
   };
 
-  _transformListItem = async (responseData) => responseData.results.data;
+  _transformListItem = (responseData) => responseData.results.data;
 }
