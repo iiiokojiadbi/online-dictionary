@@ -68,9 +68,18 @@ export default class App extends Component {
   };
 
   handleStarredWord = ({ word }) => {
-    this.setState({
-      starredWords: [...this.state.starredWords, { ...word, starred: true }],
-    });
+    if (!word.starred) {
+      this.setState({
+        starredWords: [...this.state.starredWords, { ...word, starred: true }],
+      });
+    } else {
+      const newListWord = this.state.starredWords.filter(
+        (item) => item.word !== word.word
+      );
+      this.setState({
+        starredWords: [...newListWord],
+      });
+    }
   };
 
   render() {
@@ -103,7 +112,11 @@ export default class App extends Component {
           <Route path="/starred">
             <ListWordsContext.Provider value={starredWords}>
               <SearchValueContext.Provider value={this.handleChangeSearchWord}>
-                <Keeper />
+                <HandleStarredWordContext.Provider
+                  value={this.handleStarredWord}
+                >
+                  <Keeper />
+                </HandleStarredWordContext.Provider>
               </SearchValueContext.Provider>
             </ListWordsContext.Provider>
           </Route>
