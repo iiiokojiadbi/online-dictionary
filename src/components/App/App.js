@@ -36,10 +36,14 @@ export default class App extends Component {
   render() {
     const { listWords } = this.state;
 
+    const sortListWords = [...listWords].sort((prev, next) =>
+      prev.word < next.word ? -1 : 1
+    );
+
     return (
       <div className={classes.app}>
         <Header />
-        <ListWordsContext.Provider value={listWords}>
+        <ListWordsContext.Provider value={sortListWords}>
           <Keeper listWords={listWords} />
         </ListWordsContext.Provider>
       </div>
