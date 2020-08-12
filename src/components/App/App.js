@@ -21,7 +21,6 @@ export default class App extends Component {
     listWords: [],
     starredWords: [],
     isStarred: false,
-    isMount: false,
   };
 
   componentDidMount() {
@@ -30,8 +29,8 @@ export default class App extends Component {
     this.setState({
       listWords: findWords,
       starredWords: starredWords,
-      isMount: true,
       word: '',
+      isStarred: window.location.pathname === '/starred',
     });
   }
 
@@ -160,7 +159,11 @@ function finsStarredElements(targetArray, additionalArray) {
 
 function filterStarredWords(array, filter) {
   return array.filter((item) => {
-    return filter === '' ? true : item.word.includes(filter);
+    if (filter === '') {
+      return true;
+    } else {
+      return item.word.includes(filter);
+    }
   });
 }
 
