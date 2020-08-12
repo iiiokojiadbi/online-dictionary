@@ -4,7 +4,7 @@ export default class DictionaryApi {
     'x-rapidapi-host': 'wordsapiv1.p.rapidapi.com',
     'x-rapidapi-key': 'c83ecd7197msh753cd144a215978p1637dfjsnf0d0ef5beb95',
   };
-  _limitWords = 'limit=10';
+  _limitWords = 'limit=2';
   _countPage = 'page=1';
   _pronunciationPattern = 'pronunciationpattern=.*æm$';
 
