@@ -15,4 +15,13 @@ export default class Storage {
 
     return initialStorage;
   }
+
+  initialRender() {
+    if (!localStorage.mainTitle) {
+      this.refreshStorage('findWords', []);
+    }
+    if (!localStorage.sections) {
+      this.refreshStorage('starredWords', []);
+    }
+  }
 }
