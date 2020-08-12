@@ -3,13 +3,23 @@ import classes from './ListItems.module.css';
 import ItemList from './../ItemList/ItemList';
 
 import { ListWordsContext } from './../../context/ListWordsContext';
+import { HandleStarredWordContext } from './../../context/HandleStarredWordContext';
 
 const ListItems = () => {
   const listWords = useContext(ListWordsContext);
+  const handleStarredWord = useContext(HandleStarredWordContext);
 
   const words = listWords
     ? listWords.map((word, i) => {
-        return <ItemList key={i} {...word} />;
+        return (
+          <ItemList
+            key={i}
+            {...word}
+            handleClick={() => {
+              handleStarredWord({ word });
+            }}
+          />
+        );
       })
     : null;
 

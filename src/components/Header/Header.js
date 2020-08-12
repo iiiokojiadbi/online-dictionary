@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from './Header.module.css';
 
-const Header = () => {
+const Header = ({ toggleKeeper, toggleStarred }) => {
   return (
     <header className={classes.header}>
       <NavLink
@@ -10,6 +10,7 @@ const Header = () => {
         className={classes.link}
         exact
         to="/"
+        onClick={toggleKeeper}
       >
         Word Keeper
       </NavLink>
@@ -17,6 +18,7 @@ const Header = () => {
         activeClassName={classes.active}
         className={classes.link}
         to="/starred"
+        onClick={toggleStarred}
       >
         Starred Words
       </NavLink>

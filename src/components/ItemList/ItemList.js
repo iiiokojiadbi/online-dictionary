@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './ItemList.module.css';
 
-const ItemList = ({ word, results, starred, isEmpty = false }) => {
+const ItemList = ({ word, results, starred, handleClick, isEmpty = false }) => {
   const renderResults = (info) => {
     const infoWord = info !== undefined ? info['0'] : null;
     const { partOfSpeech, definition } = infoWord || {
@@ -17,6 +17,7 @@ const ItemList = ({ word, results, starred, isEmpty = false }) => {
         <span className={classes.definition}>Definition: {definition}</span>
         <button
           type="button"
+          onClick={handleClick}
           className={`${classes.star} ${starred ? classes.star__active : null}`}
         ></button>
       </React.Fragment>

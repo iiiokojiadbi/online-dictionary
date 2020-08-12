@@ -8,6 +8,7 @@ import Keeper from './../Keeper/Keeper';
 
 import { ListWordsContext } from './../../context/ListWordsContext';
 import { SearchValueContext } from './../../context/SearchValueContext';
+import { HandleStarredWordContext } from './../../context/HandleStarredWordContext';
 
 import _ from 'lodash';
 
@@ -17,23 +18,27 @@ export default class App extends Component {
   state = {
     listWords: [],
     starredWords: [],
+    isStarred: false,
   };
 
   componentDidMount() {}
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.word !== '' && this.state.word !== prevState.word) {
+    console.log(prevState);
+    if (
+      this.state.word !== '' &&
+      this.state.word !== prevState.word &&
+      this.state.isStarred === false
+    ) {
       this.refreshListWords();
     }
   }
 
   refreshListWords() {
     const { word } = this.state;
-
     this.setState({
       listWords: [],
     });
-
     this._api.getListWords({ word }).then(async (listWords) => {
       listWords.map(async (w) => {
         const infWord = { ...(await this._api.getInfoWord(w)), starred: false };
@@ -50,34 +55,83 @@ export default class App extends Component {
     });
   };
 
-  uniqSortFilter = (array) =>
-    _.uniqWith(
-      [...array]
-        .sort((prev, next) => (prev.word < next.word ? -1 : 1))
-        .filter((item) => item.word.includes(this.state.word))
-        .slice(-10),
-      _.isEqual
-    );
+  handleChangeOnKeeper = () => {
+    this.setState({
+      isStarred: false,
+    });
+  };
+
+  handleChangeOnStarred = () => {
+    this.setState({
+      isStarred: true,
+    });
+  };
+
+  handleStarredWord = ({ word }) => {
+    this.setState({
+      starredWords: [...this.state.starredWords, { ...word, starred: true }],
+    });
+  };
 
   render() {
-    const { listWords } = this.state;
+    const { listWords, starredWords, word } = this.state;
+    const uniqSortListWords = uniqSortFilter(listWords, word);
 
-    const uniqSortListWords = this.uniqSortFilter(listWords);
+    const newListWordsWithStar = finsStarredElements(
+      uniqSortListWords,
+      starredWords
+    );
 
     return (
       <div className={classes.app}>
-        <Header />
+        <Header
+          toggleKeeper={this.handleChangeOnKeeper}
+          toggleStarred={this.handleChangeOnStarred}
+        />
         <Switch>
           <Route exact path="/">
-            <ListWordsContext.Provider value={uniqSortListWords}>
+            <ListWordsContext.Provider value={newListWordsWithStar}>
+              <SearchValueContext.Provider value={this.handleChangeSearchWord}>
+                <HandleStarredWordContext.Provider
+                  value={this.handleStarredWord}
+                >
+                  <Keeper />
+                </HandleStarredWordContext.Provider>
+              </SearchValueContext.Provider>
+            </ListWordsContext.Provider>
+          </Route>
+          <Route path="/starred">
+            <ListWordsContext.Provider value={starredWords}>
               <SearchValueContext.Provider value={this.handleChangeSearchWord}>
                 <Keeper />
               </SearchValueContext.Provider>
             </ListWordsContext.Provider>
           </Route>
-          <Route path="/starred"></Route>
         </Switch>
       </div>
     );
   }
+}
+
+function finsStarredElements(targetArray, additionalArray) {
+  return targetArray.map((itemKeep) => {
+    const starKeep = additionalArray.find(
+      (itemStar) => itemKeep.word === itemStar.word
+    );
+
+    if (starKeep) {
+      return { ...starKeep, starred: true };
+    }
+    return itemKeep;
+  });
+}
+
+function uniqSortFilter(array, filter) {
+  return _.uniqWith(
+    [...array]
+      .sort((prev, next) => (prev.word < next.word ? -1 : 1))
+      .filter((item) => item.word.includes(filter))
+      .slice(-10),
+    _.isEqual
+  );
 }
