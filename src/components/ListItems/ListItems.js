@@ -9,7 +9,7 @@ const ListItems = () => {
 
   const words = listWords
     ? listWords.map((word, i) => {
-        return <ItemList key={i} word={word} />;
+        return <ItemList key={i} {...word} />;
       })
     : null;
 
