@@ -13,7 +13,9 @@ const ListItems = () => {
       })
     : null;
 
-  return <ul className={classes.listItems}>{words}</ul>;
+  const isEmpty = !words.length ? <ItemList isEmpty /> : words;
+
+  return <ul className={classes.listItems}>{isEmpty}</ul>;
 };
 
 export default ListItems;

@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './ItemList.module.css';
 
-const ItemList = ({ word, results }) => {
+const ItemList = ({ word, results, isEmpty = false }) => {
   const renderResults = (info) => {
     const infoWord = info !== undefined ? info['0'] : null;
     const { partOfSpeech, definition } = infoWord || {
@@ -22,16 +22,11 @@ const ItemList = ({ word, results }) => {
     return domElements;
   };
 
-  return <li className={classes.item}>{renderResults(results)}</li>;
+  if (!isEmpty) {
+    return <li className={classes.item}>{renderResults(results)}</li>;
+  } else {
+    return <li></li>;
+  }
 };
 
 export default ItemList;
-
-const NoInfo = () => {
-  return (
-    <>
-      <span className={classes.part}>no</span>
-      <span className={classes.definition}>Definition: is missing</span>
-    </>
-  );
-};
