@@ -107,13 +107,7 @@ export default class App extends Component {
     );
 
     const filterStarredWord = isStarred
-      ? starredWords.filter((item) => {
-          if (word == '') {
-            return true;
-          } else {
-            return item.word.includes(word);
-          }
-        })
+      ? filterStarredWords(starredWords, word)
       : starredWords;
 
     return (
@@ -161,6 +155,16 @@ function finsStarredElements(targetArray, additionalArray) {
       return { ...starKeep, starred: true };
     }
     return itemKeep;
+  });
+}
+
+function filterStarredWords(array, filter) {
+  return array.filter((item) => {
+    if (filter === '') {
+      return true;
+    } else {
+      return item.word.includes(filter);
+    }
   });
 }
 
