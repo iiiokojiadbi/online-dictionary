@@ -18,7 +18,7 @@ const Header = () => {
         className={classes.link}
         to="/starred"
       >
-        &#9733; Starred Words
+        Starred Words
       </NavLink>
     </header>
   );
