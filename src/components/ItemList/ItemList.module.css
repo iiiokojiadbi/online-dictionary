@@ -13,16 +13,10 @@
 .name {
   font-size: 20px;
   font-weight: bold;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .part {
   font-style: italic;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .definition {
@@ -31,12 +25,36 @@
   overflow: hidden;
 }
 
+.definition,
+.part,
+.name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .star {
+  background-image: url(./../../images/star_border.svg);
+  background-color: transparent;
+}
+
+.burger {
+  background-image: url(./../../images/headline.svg);
+  background-color: transparent;
+}
+
+.star,
+.burger {
   display: block;
   width: 30px;
   height: 30px;
+  cursor: pointer;
   padding: 0;
   margin: 0;
-  background-color: #000;
   outline: none;
+  border: none;
+}
+
+.star__active {
+  background-image: url(./../../images/star_black.svg);
 }

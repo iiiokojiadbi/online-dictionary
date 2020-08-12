@@ -36,7 +36,7 @@ export default class App extends Component {
 
     this._api.getListWords({ word }).then(async (listWords) => {
       listWords.map(async (w) => {
-        const infWord = await this._api.getInfoWord(w);
+        const infWord = { ...(await this._api.getInfoWord(w)), starred: false };
         this.setState({
           listWords: [...this.state.listWords, infWord],
         });
