@@ -16,6 +16,7 @@ import _ from 'lodash';
 
 export default class App extends Component {
   _api = new DictionaryApi();
+  _storage = new Storage();
 
   state = {
     listWords: [],
@@ -24,8 +25,9 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    this._storage = new Storage();
+    this._storage.initialRender();
     const { findWords, starredWords } = this._storage.getInitialData();
+    console.log(findWords, starredWords);
     this.setState({
       listWords: findWords,
       starredWords: starredWords,
