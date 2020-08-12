@@ -12,7 +12,7 @@ export default class App extends Component {
 
   state = {
     listWords: [],
-    word: 'awes',
+    word: 'oke',
   };
 
   componentDidMount() {
@@ -22,9 +22,13 @@ export default class App extends Component {
   refreshListWords() {
     const { word } = this.state;
 
-    this._api.getListWords({ word: this.state.word }).then((listWords) => {
-      this.setState({
-        listWords: [...listWords],
+    this._api.getListWords({ word }).then(async (listWords) => {
+      listWords.map(async (word) => {
+        const infWord = await this._api.getInfoWord(word);
+
+        this.setState({
+          listWords: [...this.state.listWords, infWord],
+        });
       });
     });
   }
