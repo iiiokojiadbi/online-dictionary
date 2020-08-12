@@ -5,3 +5,18 @@
   justify-content: space-between;
   padding: 10px;
 }
+
+.link {
+  color: #fff;
+  font-size: 25px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.active {
+  background-color: #fff;
+  color: #000;
+}
