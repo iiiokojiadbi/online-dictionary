@@ -10,6 +10,8 @@ import { ListWordsContext } from './../../context/ListWordsContext';
 import { SearchValueContext } from './../../context/SearchValueContext';
 import { HandleStarredWordContext } from './../../context/HandleStarredWordContext';
 
+import Storage from './../../service/Storage';
+
 import _ from 'lodash';
 
 export default class App extends Component {
@@ -19,18 +21,31 @@ export default class App extends Component {
     listWords: [],
     starredWords: [],
     isStarred: false,
+    isMount: false,
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    this._storage = new Storage();
+    const { findWords, starredWords } = this._storage.getInitialData();
+    this.setState({
+      listWords: findWords,
+      starredWords: starredWords,
+      isMount: true,
+      word: '',
+    });
+  }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(prevState);
     if (
       this.state.word !== '' &&
       this.state.word !== prevState.word &&
       this.state.isStarred === false
     ) {
       this.refreshListWords();
+      this._storage.refreshStorage('findWords', this.state.listWords);
+    }
+    if (this.state.starredWords !== prevState.starredWords) {
+      this._storage.refreshStorage('starredWords', this.state.starredWords);
     }
   }
 
@@ -83,13 +98,23 @@ export default class App extends Component {
   };
 
   render() {
-    const { listWords, starredWords, word } = this.state;
+    const { listWords, starredWords, word, isStarred } = this.state;
     const uniqSortListWords = uniqSortFilter(listWords, word);
 
     const newListWordsWithStar = finsStarredElements(
       uniqSortListWords,
       starredWords
     );
+
+    const filterStarredWord = isStarred
+      ? starredWords.filter((item) => {
+          if (word == '') {
+            return true;
+          } else {
+            return item.word.includes(word);
+          }
+        })
+      : starredWords;
 
     return (
       <div className={classes.app}>
@@ -110,7 +135,7 @@ export default class App extends Component {
             </ListWordsContext.Provider>
           </Route>
           <Route path="/starred">
-            <ListWordsContext.Provider value={starredWords}>
+            <ListWordsContext.Provider value={filterStarredWord}>
               <SearchValueContext.Provider value={this.handleChangeSearchWord}>
                 <HandleStarredWordContext.Provider
                   value={this.handleStarredWord}
