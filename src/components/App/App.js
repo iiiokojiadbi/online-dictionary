@@ -160,11 +160,7 @@ function finsStarredElements(targetArray, additionalArray) {
 
 function filterStarredWords(array, filter) {
   return array.filter((item) => {
-    if (filter === '') {
-      return true;
-    } else {
-      return item.word.includes(filter);
-    }
+    return filter === '' ? true : item.word.includes(filter);
   });
 }
 
