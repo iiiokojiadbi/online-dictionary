@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/iiiokojiadbi/online-dictionary/static/css/main.c530cb17.chunk.css",
+    "main.js": "/iiiokojiadbi/online-dictionary/static/js/main.185b127f.chunk.js",
+    "main.js.map": "/iiiokojiadbi/online-dictionary/static/js/main.185b127f.chunk.js.map",
+    "runtime-main.js": "/iiiokojiadbi/online-dictionary/static/js/runtime-main.445e2d15.js",
+    "runtime-main.js.map": "/iiiokojiadbi/online-dictionary/static/js/runtime-main.445e2d15.js.map",
+    "static/js/2.6a50feab.chunk.js": "/iiiokojiadbi/online-dictionary/static/js/2.6a50feab.chunk.js",
+    "static/js/2.6a50feab.chunk.js.map": "/iiiokojiadbi/online-dictionary/static/js/2.6a50feab.chunk.js.map",
+    "index.html": "/iiiokojiadbi/online-dictionary/index.html",
+    "precache-manifest.01fd299ca4c21b612e756b577c1f53bf.js": "/iiiokojiadbi/online-dictionary/precache-manifest.01fd299ca4c21b612e756b577c1f53bf.js",
+    "service-worker.js": "/iiiokojiadbi/online-dictionary/service-worker.js",
+    "static/css/main.c530cb17.chunk.css.map": "/iiiokojiadbi/online-dictionary/static/css/main.c530cb17.chunk.css.map",
+    "static/js/2.6a50feab.chunk.js.LICENSE.txt": "/iiiokojiadbi/online-dictionary/static/js/2.6a50feab.chunk.js.LICENSE.txt",
+    "static/media/PTSans.css": "/iiiokojiadbi/online-dictionary/static/media/PTSans-Regular.4ea26cd5.ttf",
+    "static/media/InfoPopup.module.css": "/iiiokojiadbi/online-dictionary/static/media/close.5df32a06.svg",
+    "static/media/ItemList.module.css": "/iiiokojiadbi/online-dictionary/static/media/star_border.981d4779.svg",
+    "static/media/Header.module.css": "/iiiokojiadbi/online-dictionary/static/media/star_white.ca9a8dda.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.445e2d15.js",
+    "static/js/2.6a50feab.chunk.js",
+    "static/css/main.c530cb17.chunk.css",
+    "static/js/main.185b127f.chunk.js"
+  ]
+}
