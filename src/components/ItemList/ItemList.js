@@ -19,11 +19,11 @@ const ItemList = ({
     const domElements = (
       <React.Fragment key={word}>
         <button type="button" className={classes.burger}></button>
-        <span className={classes.name} onClick={handleOpenInfo}>
-          {word}
-        </span>
-        <span className={classes.part}>{partOfSpeech}</span>
-        <span className={classes.definition}>Definition: {definition}</span>
+        <div className={classes.brief} onClick={handleOpenInfo}>
+          <span className={classes.name}>{word}</span>
+          <span className={classes.part}>{partOfSpeech}</span>
+          <span className={classes.definition}>Definition: {definition}</span>
+        </div>
         <button
           type="button"
           onClick={handleClickStar}

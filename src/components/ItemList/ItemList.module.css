@@ -3,11 +3,10 @@
   border-radius: 5px;
   padding: 5px 20px;
   display: grid;
-  grid-template-columns: min-content 2fr 1.5fr 4fr min-content;
+  grid-template-columns: min-content 1fr min-content;
   grid-template-rows: auto;
   justify-content: space-between;
   align-items: center;
-  gap: 30px;
 }
 
 .name {
@@ -19,12 +18,16 @@
   font-style: italic;
 }
 
-.definition {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+.brief {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 3fr;
+  align-items: center;
+  gap: 15px;
+  height: 100%;
+  padding: 0 20px;
 }
 
+.brief,
 .definition,
 .part,
 .name {
@@ -60,6 +63,7 @@
 }
 
 @media (pointer: fine) {
+  .brief,
   .star,
   .burger {
     cursor: pointer;
