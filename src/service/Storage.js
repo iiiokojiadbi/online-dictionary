@@ -17,10 +17,10 @@ export default class Storage {
   }
 
   initialRender() {
-    if (!localStorage.mainTitle) {
+    if (!localStorage.findWords) {
       this.refreshStorage('findWords', []);
     }
-    if (!localStorage.sections) {
+    if (!localStorage.starredWords) {
       this.refreshStorage('starredWords', []);
     }
   }
