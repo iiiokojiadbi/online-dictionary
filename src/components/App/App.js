@@ -4,11 +4,12 @@ import classes from './App.module.css';
 import './../../fonts/PTSans.css';
 import DictionaryApi from './../../service/Api';
 import Header from './../Header/Header';
-import Keeper from './../Keeper/Keeper';
+import WordBoard from './../WordBoard/WordBoard';
 
 import { ListWordsContext } from './../../context/ListWordsContext';
 import { SearchValueContext } from './../../context/SearchValueContext';
 import { HandleStarredWordContext } from './../../context/HandleStarredWordContext';
+import { HandleSetPathOfSpeechContext } from './../../context/HandleSetPathOfSpeechContext';
 
 import Storage from './../../service/Storage';
 
@@ -22,6 +23,7 @@ export default class App extends Component {
     listWords: [],
     starredWords: [],
     isStarred: false,
+    filterPathOfSpeech: '',
   };
 
   componentDidMount() {
@@ -65,6 +67,12 @@ export default class App extends Component {
     });
   }
 
+  handleSetPathOfSpeech = ({ pathOfSpeech }) => {
+    this.setState({
+      filterPathOfSpeech: pathOfSpeech,
+    });
+  };
+
   handleChangeSearchWord = ({ word }) => {
     this.setState({
       word: word,
@@ -99,7 +107,13 @@ export default class App extends Component {
   };
 
   render() {
-    const { listWords, starredWords, word, isStarred } = this.state;
+    const {
+      listWords,
+      starredWords,
+      word,
+      isStarred,
+      filterPathOfSpeech,
+    } = this.state;
     const uniqSortListWords = uniqSortFilter(listWords, word);
 
     const newListWordsWithStar = finsStarredElements(
@@ -111,6 +125,11 @@ export default class App extends Component {
       ? filterStarredWords(starredWords, word)
       : starredWords;
 
+    const filterPathOfSpeechStarredWord = filterWordsPathOfSpeech({
+      items: filterStarredWord,
+      filter: filterPathOfSpeech,
+    });
+
     return (
       <div className={classes.app}>
         <Header
@@ -118,28 +137,26 @@ export default class App extends Component {
           toggleStarred={this.handleChangeOnStarred}
         />
         <Switch>
-          <Route exact path="/">
-            <ListWordsContext.Provider value={newListWordsWithStar}>
-              <SearchValueContext.Provider value={this.handleChangeSearchWord}>
-                <HandleStarredWordContext.Provider
-                  value={this.handleStarredWord}
-                >
-                  <Keeper />
-                </HandleStarredWordContext.Provider>
-              </SearchValueContext.Provider>
-            </ListWordsContext.Provider>
-          </Route>
-          <Route path="/starred">
-            <ListWordsContext.Provider value={filterStarredWord}>
-              <SearchValueContext.Provider value={this.handleChangeSearchWord}>
-                <HandleStarredWordContext.Provider
-                  value={this.handleStarredWord}
-                >
-                  <Keeper />
-                </HandleStarredWordContext.Provider>
-              </SearchValueContext.Provider>
-            </ListWordsContext.Provider>
-          </Route>
+          <SearchValueContext.Provider value={this.handleChangeSearchWord}>
+            <HandleStarredWordContext.Provider value={this.handleStarredWord}>
+              <HandleSetPathOfSpeechContext.Provider
+                value={this.handleSetPathOfSpeech}
+              >
+                <Route exact path="/">
+                  <ListWordsContext.Provider value={newListWordsWithStar}>
+                    <WordBoard />
+                  </ListWordsContext.Provider>
+                </Route>
+                <Route path="/starred">
+                  <ListWordsContext.Provider
+                    value={filterPathOfSpeechStarredWord}
+                  >
+                    <WordBoard />
+                  </ListWordsContext.Provider>
+                </Route>
+              </HandleSetPathOfSpeechContext.Provider>
+            </HandleStarredWordContext.Provider>
+          </SearchValueContext.Provider>
         </Switch>
       </div>
     );
@@ -177,4 +194,29 @@ function uniqSortFilter(array, filter) {
       .slice(-10),
     _.isEqual
   );
+}
+
+function filterWordsPathOfSpeech({ items, filter }) {
+  const filterWords = items.filter((words) => {
+    const infoWord = words.results !== undefined ? words.results['0'] : null;
+    const { partOfSpeech } = infoWord || {
+      partOfSpeech: 'missing',
+    };
+    switch (filter) {
+      case 'noun':
+        console.log(partOfSpeech === filter);
+        return partOfSpeech === filter;
+      case 'verb':
+        console.log(partOfSpeech === filter);
+        return partOfSpeech === filter;
+      case 'adjective':
+        console.log(partOfSpeech === filter);
+        return partOfSpeech === filter;
+      default:
+        console.log('4');
+        return items;
+    }
+  });
+
+  return filterWords;
 }
