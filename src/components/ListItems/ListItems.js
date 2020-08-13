@@ -10,10 +10,10 @@ const ListItems = () => {
   const handleStarredWord = useContext(HandleStarredWordContext);
 
   const words = listWords
-    ? listWords.map((word, i) => {
+    ? listWords.map((word) => {
         return (
           <ItemList
-            key={i}
+            key={word.word}
             {...word}
             handleClick={() => {
               handleStarredWord({ word });
