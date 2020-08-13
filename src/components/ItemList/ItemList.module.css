@@ -58,3 +58,10 @@
 .star__active {
   background-image: url(./../../images/star_black.svg);
 }
+
+@media (pointer: fine) {
+  .star,
+  .burger {
+    cursor: pointer;
+  }
+}

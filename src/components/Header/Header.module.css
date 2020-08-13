@@ -34,3 +34,9 @@
 .active:last-child::before {
   background-image: url(./../../images/star_black.svg);
 }
+
+@media (pointer: fine) {
+  .link {
+    cursor: pointer;
+  }
+}
