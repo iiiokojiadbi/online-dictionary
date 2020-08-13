@@ -3,7 +3,7 @@ import classes from './WordBoard.module.css';
 import SearchPanel from './../SearchPanel/SearchPanel';
 import ListItems from './../ListItems/ListItems';
 
-export default class KeeperWithWords extends Component {
+export default class WordBoard extends Component {
   render() {
     return (
       <section className={classes.wordBoard}>
