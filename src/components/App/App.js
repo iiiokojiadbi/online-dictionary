@@ -30,7 +30,6 @@ export default class App extends Component {
   componentDidMount() {
     this._storage.initialRender();
     const { findWords, starredWords } = this._storage.getInitialData();
-    console.log(findWords, starredWords);
     this.setState({
       listWords: findWords,
       starredWords: starredWords,
@@ -139,7 +138,12 @@ export default class App extends Component {
         />
         <Switch>
           <IsStarredContext.Provider value={isStarred}>
-            <SearchValueContext.Provider value={this.handleChangeSearchWord}>
+            <SearchValueContext.Provider
+              value={{
+                inputWord: word,
+                handleChangeSearch: this.handleChangeSearchWord,
+              }}
+            >
               <HandleStarredWordContext.Provider value={this.handleStarredWord}>
                 <HandleSetPathOfSpeechContext.Provider
                   value={this.handleSetPathOfSpeech}
@@ -213,7 +217,7 @@ function filterWordsPathOfSpeech({ items, filter }) {
       case 'adjective':
         return partOfSpeech === filter;
       default:
-        return items;
+        return true;
     }
   });
 

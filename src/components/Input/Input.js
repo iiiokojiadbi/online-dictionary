@@ -1,16 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import classes from './Input.module.css';
 
 import { SearchValueContext } from './../../context/SearchValueContext';
 
 const Input = () => {
-  const handleChangeInputValue = useContext(SearchValueContext);
+  const { handleChangeSearch, inputWord = '' } = useContext(SearchValueContext);
 
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState(inputWord);
 
   const handleChange = (evt) => {
     const { value } = evt.target;
-    handleChangeInputValue({ word: value });
+    handleChangeSearch({ word: value });
     setInputValue(value);
   };
 
