@@ -23,4 +23,4 @@
 
 **Проект**
 
-- [Ссылка на проект в github pages](https://iiiokojiadbi.github.io/bouncing-ball/)
+- [Ссылка на проект в github pages](https://iiiokojiadbi.github.io/online-dictionary/)
