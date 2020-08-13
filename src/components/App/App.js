@@ -198,12 +198,12 @@ export default class App extends Component {
                   <HandleSetPathOfSpeechContext.Provider
                     value={this.handleSetPathOfSpeech}
                   >
-                    <Route exact path="/">
+                    <Route exact path="/online-dictionary/">
                       <ListWordsContext.Provider value={newListWordsWithStar}>
                         <WordBoard />
                       </ListWordsContext.Provider>
                     </Route>
-                    <Route path="/starred">
+                    <Route path="/online-dictionary/starred">
                       <ListWordsContext.Provider
                         value={filterPathOfSpeechStarredWord}
                       >

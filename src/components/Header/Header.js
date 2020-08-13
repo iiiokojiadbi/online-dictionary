@@ -9,7 +9,7 @@ const Header = ({ toggleKeeper, toggleStarred }) => {
         activeClassName={classes.active}
         className={classes.link}
         exact
-        to="/"
+        to="/online-dictionary/"
         onClick={toggleKeeper}
       >
         Word Keeper
@@ -17,7 +17,7 @@ const Header = ({ toggleKeeper, toggleStarred }) => {
       <NavLink
         activeClassName={classes.active}
         className={classes.link}
-        to="/starred"
+        to="/online-dictionary/starred"
         onClick={toggleStarred}
       >
         Starred Words
