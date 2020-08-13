@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/iiiokojiadbi/online-dictionary/static/css/main.c530cb17.chunk.css",
-    "main.js": "/iiiokojiadbi/online-dictionary/static/js/main.185b127f.chunk.js",
-    "main.js.map": "/iiiokojiadbi/online-dictionary/static/js/main.185b127f.chunk.js.map",
+    "main.js": "/iiiokojiadbi/online-dictionary/static/js/main.aeb3d1ed.chunk.js",
+    "main.js.map": "/iiiokojiadbi/online-dictionary/static/js/main.aeb3d1ed.chunk.js.map",
     "runtime-main.js": "/iiiokojiadbi/online-dictionary/static/js/runtime-main.445e2d15.js",
     "runtime-main.js.map": "/iiiokojiadbi/online-dictionary/static/js/runtime-main.445e2d15.js.map",
     "static/js/2.6a50feab.chunk.js": "/iiiokojiadbi/online-dictionary/static/js/2.6a50feab.chunk.js",
     "static/js/2.6a50feab.chunk.js.map": "/iiiokojiadbi/online-dictionary/static/js/2.6a50feab.chunk.js.map",
     "index.html": "/iiiokojiadbi/online-dictionary/index.html",
-    "precache-manifest.01fd299ca4c21b612e756b577c1f53bf.js": "/iiiokojiadbi/online-dictionary/precache-manifest.01fd299ca4c21b612e756b577c1f53bf.js",
+    "precache-manifest.5180abdc482b5d59dfb3f47eac420c95.js": "/iiiokojiadbi/online-dictionary/precache-manifest.5180abdc482b5d59dfb3f47eac420c95.js",
     "service-worker.js": "/iiiokojiadbi/online-dictionary/service-worker.js",
     "static/css/main.c530cb17.chunk.css.map": "/iiiokojiadbi/online-dictionary/static/css/main.c530cb17.chunk.css.map",
     "static/js/2.6a50feab.chunk.js.LICENSE.txt": "/iiiokojiadbi/online-dictionary/static/js/2.6a50feab.chunk.js.LICENSE.txt",
@@ -21,6 +21,6 @@
     "static/js/runtime-main.445e2d15.js",
     "static/js/2.6a50feab.chunk.js",
     "static/css/main.c530cb17.chunk.css",
-    "static/js/main.185b127f.chunk.js"
+    "static/js/main.aeb3d1ed.chunk.js"
   ]
 }

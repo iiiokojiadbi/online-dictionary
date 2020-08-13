@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bb91e1521063651bc895360cd39a8999",
+    "revision": "7171fd6c0d325b6b0fe0afc9b52fd475",
     "url": "/iiiokojiadbi/online-dictionary/index.html"
   },
   {
-    "revision": "93d32ba11564a4180039",
+    "revision": "cd43524a621171c6da99",
     "url": "/iiiokojiadbi/online-dictionary/static/css/main.c530cb17.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/iiiokojiadbi/online-dictionary/static/js/2.6a50feab.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "93d32ba11564a4180039",
-    "url": "/iiiokojiadbi/online-dictionary/static/js/main.185b127f.chunk.js"
+    "revision": "cd43524a621171c6da99",
+    "url": "/iiiokojiadbi/online-dictionary/static/js/main.aeb3d1ed.chunk.js"
   },
   {
     "revision": "2a5fc78461e5a81e589e",
