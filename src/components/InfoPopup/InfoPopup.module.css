@@ -57,8 +57,6 @@
 }
 
 .info {
-  max-height: 75vh;
-  max-width: 75vw;
   overflow: hidden;
   overflow-y: auto;
   display: grid;
@@ -92,6 +90,8 @@
   list-style-type: none;
   grid-column: 2 / 3;
   grid-row: 1 / -1;
+  max-height: 75vh;
+  max-width: 75vw;
 }
 
 .spelling {
@@ -134,7 +134,45 @@
   }
 }
 
-@media screen and (max-width: 620px) {
+@media (max-width: 768px) {
+  .info {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .title {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    padding-left: 0;
+  }
+
+  .center {
+  }
+
+  .list {
+    grid-column: 1 / -1;
+    grid-row: 3 / 4;
+  }
+
+  .spelling {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    padding-left: 0;
+  }
+
+  .itemList {
+  }
+
+  .partOfSpeech {
+  }
+  .spelling,
+  .partOfSpeech,
+  .definition {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 600px) {
   .close {
     width: 48px;
     height: 48px;

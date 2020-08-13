@@ -1,9 +1,38 @@
 .searchPanel {
+  padding: 20px 0;
 }
 
 .wrapper {
   background-color: #3f51b5;
   border-radius: 5px;
-  min-height: 100px;
   padding: 10px;
+  position: sticky;
+  top: 20px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .searchPanel {
+    position: fixed;
+    bottom: 0;
+    left: 10px;
+  }
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: min-content;
+    align-items: center;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .searchPanel {
+    width: calc(100% - 10px);
+  }
+  .wrapper {
+    display: block;
+    align-items: center;
+    grid-template-rows: min-content;
+  }
 }

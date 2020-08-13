@@ -55,6 +55,10 @@ const ListItems = () => {
     evt.preventDefault();
   };
 
+  const dragEnd = (evt) => {
+    evt.preventDefault();
+  };
+
   const words = listWords
     ? listWords.map((word) => {
         return (
@@ -80,6 +84,7 @@ const ListItems = () => {
       className={classes.listItems}
       onDrop={drop}
       onDragOver={dragOver}
+      onDragEnd={dragEnd}
       id={'container'}
     >
       {items}

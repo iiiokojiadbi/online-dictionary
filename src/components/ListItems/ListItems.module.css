@@ -6,4 +6,11 @@
   grid-template-rows: min-content;
   grid-auto-rows: min-content;
   gap: 20px;
+  padding: 20px 0;
+}
+
+@media (max-width: 768px) {
+  .listItems {
+    padding-bottom: 138px;
+  }
 }

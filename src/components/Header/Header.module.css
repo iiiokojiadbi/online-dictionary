@@ -40,3 +40,10 @@
     cursor: pointer;
   }
 }
+
+@media (max-width: 600px) {
+  .link {
+    padding: 2px 7px;
+    font-size: 16px;
+  }
+}

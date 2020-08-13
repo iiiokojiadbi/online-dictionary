@@ -2,6 +2,7 @@
   background-color: #c5cae9;
   width: 100vw;
   height: 100vh;
+  min-width: 320px;
   font-family: 'PTSans', Arial, sans-serif;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;

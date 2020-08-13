@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classes from './ItemList.module.css';
+
+import { IsStarredContext } from './../../context/IsStarredContext';
 
 const ItemList = ({
   word,
@@ -10,6 +12,8 @@ const ItemList = ({
   handleOpenInfo,
   isEmpty = false,
 }) => {
+  const isStarred = useContext(IsStarredContext);
+
   const dragStart = (evt) => {
     evt.dataTransfer.setData('card_id', evt.target.id);
     evt.target.classList.add('dragging');
@@ -62,8 +66,25 @@ const ItemList = ({
         {renderResults(results)}
       </li>
     );
-  } else {
-    return <li></li>;
+  }
+  if (isStarred && isEmpty) {
+    return (
+      <li className={classes.item}>
+        <span className={classes.findStar}>
+          There are no starred words. Find interesting words and click on the
+          star
+        </span>
+      </li>
+    );
+  }
+  if (isEmpty) {
+    return (
+      <li className={classes.item}>
+        <span className={classes.findStar}>
+          Start searching for interesting words
+        </span>
+      </li>
+    );
   }
 };
 
