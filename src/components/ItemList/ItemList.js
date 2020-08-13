@@ -5,10 +5,24 @@ const ItemList = ({
   word,
   results,
   starred,
+  draggable,
   handleClickStar,
   handleOpenInfo,
   isEmpty = false,
 }) => {
+  const dragStart = (evt) => {
+    evt.dataTransfer.setData('card_id', evt.target.id);
+    evt.target.classList.add('dragging');
+  };
+
+  const dragOver = (evt) => {
+    evt.stopPropagation();
+  };
+
+  const dragEnd = (evt) => {
+    evt.target.classList.remove('dragging');
+  };
+
   const renderResults = (info) => {
     const infoWord = info !== undefined ? info['0'] : null;
     const { partOfSpeech, definition } = infoWord || {
@@ -18,7 +32,7 @@ const ItemList = ({
 
     const domElements = (
       <React.Fragment key={word}>
-        <button type="button" className={classes.burger}></button>
+        <div className={classes.burger}></div>
         <div className={classes.brief} onClick={handleOpenInfo}>
           <span className={classes.name}>{word}</span>
           <span className={classes.part}>{partOfSpeech}</span>
@@ -36,7 +50,18 @@ const ItemList = ({
   };
 
   if (!isEmpty) {
-    return <li className={classes.item}>{renderResults(results)}</li>;
+    return (
+      <li
+        id={word}
+        onDragStart={dragStart}
+        onDragOver={dragOver}
+        onDragEnd={dragEnd}
+        draggable={draggable}
+        className={`${classes.item} ${draggable ? 'draggable' : ''}`}
+      >
+        {renderResults(results)}
+      </li>
+    );
   } else {
     return <li></li>;
   }

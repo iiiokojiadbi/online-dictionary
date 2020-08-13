@@ -56,6 +56,22 @@ export default class App extends Component {
     }
   }
 
+  handleRefreshStorageStarredWords = ({ newPostion, elementDrop }) => {
+    const { starredWords } = this.state;
+    const word = starredWords.find((item) => item.word === elementDrop.word);
+    const starredWordsDeleteWord = starredWords.filter(
+      (item) => item.word !== word.word
+    );
+    const beforeStarred = starredWordsDeleteWord.slice(0, newPostion);
+    const afterStarred = starredWordsDeleteWord.slice(
+      newPostion,
+      starredWords.length
+    );
+    this.setState({
+      starredWords: [...beforeStarred, word, ...afterStarred],
+    });
+  };
+
   refreshListWords() {
     const { word } = this.state;
     this.setState({
@@ -111,7 +127,6 @@ export default class App extends Component {
   };
 
   handleClickWord = ({ word }) => {
-    console.log(word);
     this.handleInfoPopupOpen();
     this.setState({
       wordInfo: word,
@@ -140,6 +155,7 @@ export default class App extends Component {
       isInfoPopupOpen,
       wordInfo,
     } = this.state;
+
     const uniqSortListWords = uniqSortFilter(listWords, word);
 
     const newListWordsWithStar = finsStarredElements(
@@ -172,7 +188,11 @@ export default class App extends Component {
                 }}
               >
                 <HandleStarredWordContext.Provider
-                  value={this.handleStarredWord}
+                  value={{
+                    handleStarredWord: this.handleStarredWord,
+                    handleUpdateStorageStarred: this
+                      .handleRefreshStorageStarredWords,
+                  }}
                 >
                   <HandleSetPathOfSpeechContext.Provider
                     value={this.handleSetPathOfSpeech}
