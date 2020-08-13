@@ -9,7 +9,6 @@ export default class Storage {
 
   getInitialData() {
     const initialStorage = {
-      findWords: this.getData('findWords'),
       starredWords: this.getData('starredWords'),
     };
 
@@ -17,9 +16,6 @@ export default class Storage {
   }
 
   initialRender() {
-    if (!localStorage.findWords) {
-      this.refreshStorage('findWords', []);
-    }
     if (!localStorage.starredWords) {
       this.refreshStorage('starredWords', []);
     }

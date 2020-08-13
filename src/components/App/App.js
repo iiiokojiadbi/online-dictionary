@@ -32,9 +32,8 @@ export default class App extends Component {
 
   componentDidMount() {
     this._storage.initialRender();
-    const { findWords, starredWords } = this._storage.getInitialData();
+    const { starredWords } = this._storage.getInitialData();
     this.setState({
-      listWords: findWords,
       starredWords: starredWords,
       word: '',
       isStarred: window.location.pathname === '/starred',
@@ -49,11 +48,13 @@ export default class App extends Component {
       this.state.isStarred === false
     ) {
       this.refreshListWords();
-      this._storage.refreshStorage('findWords', this.state.listWords);
     }
     if (this.state.starredWords !== prevState.starredWords) {
       this._storage.refreshStorage('starredWords', this.state.starredWords);
     }
+    // if (this.state.listWords !== prevState.listWords) {
+    //   this._storage.refreshStorage('findWords', this.state.listWords);
+    // }
   }
 
   handleRefreshStorageStarredWords = ({ newPostion, elementDrop }) => {
