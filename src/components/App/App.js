@@ -10,6 +10,7 @@ import { ListWordsContext } from './../../context/ListWordsContext';
 import { SearchValueContext } from './../../context/SearchValueContext';
 import { HandleStarredWordContext } from './../../context/HandleStarredWordContext';
 import { HandleSetPathOfSpeechContext } from './../../context/HandleSetPathOfSpeechContext';
+import { IsStarredContext } from './../../context/IsStarredContext';
 
 import Storage from './../../service/Storage';
 
@@ -137,26 +138,28 @@ export default class App extends Component {
           toggleStarred={this.handleChangeOnStarred}
         />
         <Switch>
-          <SearchValueContext.Provider value={this.handleChangeSearchWord}>
-            <HandleStarredWordContext.Provider value={this.handleStarredWord}>
-              <HandleSetPathOfSpeechContext.Provider
-                value={this.handleSetPathOfSpeech}
-              >
-                <Route exact path="/">
-                  <ListWordsContext.Provider value={newListWordsWithStar}>
-                    <WordBoard />
-                  </ListWordsContext.Provider>
-                </Route>
-                <Route path="/starred">
-                  <ListWordsContext.Provider
-                    value={filterPathOfSpeechStarredWord}
-                  >
-                    <WordBoard />
-                  </ListWordsContext.Provider>
-                </Route>
-              </HandleSetPathOfSpeechContext.Provider>
-            </HandleStarredWordContext.Provider>
-          </SearchValueContext.Provider>
+          <IsStarredContext.Provider value={isStarred}>
+            <SearchValueContext.Provider value={this.handleChangeSearchWord}>
+              <HandleStarredWordContext.Provider value={this.handleStarredWord}>
+                <HandleSetPathOfSpeechContext.Provider
+                  value={this.handleSetPathOfSpeech}
+                >
+                  <Route exact path="/">
+                    <ListWordsContext.Provider value={newListWordsWithStar}>
+                      <WordBoard />
+                    </ListWordsContext.Provider>
+                  </Route>
+                  <Route path="/starred">
+                    <ListWordsContext.Provider
+                      value={filterPathOfSpeechStarredWord}
+                    >
+                      <WordBoard />
+                    </ListWordsContext.Provider>
+                  </Route>
+                </HandleSetPathOfSpeechContext.Provider>
+              </HandleStarredWordContext.Provider>
+            </SearchValueContext.Provider>
+          </IsStarredContext.Provider>
         </Switch>
       </div>
     );
@@ -204,16 +207,12 @@ function filterWordsPathOfSpeech({ items, filter }) {
     };
     switch (filter) {
       case 'noun':
-        console.log(partOfSpeech === filter);
         return partOfSpeech === filter;
       case 'verb':
-        console.log(partOfSpeech === filter);
         return partOfSpeech === filter;
       case 'adjective':
-        console.log(partOfSpeech === filter);
         return partOfSpeech === filter;
       default:
-        console.log('4');
         return items;
     }
   });
