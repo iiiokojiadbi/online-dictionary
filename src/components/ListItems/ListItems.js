@@ -4,10 +4,12 @@ import ItemList from './../ItemList/ItemList';
 
 import { ListWordsContext } from './../../context/ListWordsContext';
 import { HandleStarredWordContext } from './../../context/HandleStarredWordContext';
+import { HandleOpenInfoPopup } from './../../context/HandleOpenInfoPopup';
 
 const ListItems = () => {
   const listWords = useContext(ListWordsContext);
   const handleStarredWord = useContext(HandleStarredWordContext);
+  const handleOpenInfoPopup = useContext(HandleOpenInfoPopup);
 
   const words = listWords
     ? listWords.map((word) => {
@@ -15,8 +17,11 @@ const ListItems = () => {
           <ItemList
             key={word.word}
             {...word}
-            handleClick={() => {
+            handleClickStar={() => {
               handleStarredWord({ word });
+            }}
+            handleOpenInfo={() => {
+              handleOpenInfoPopup({ word: word });
             }}
           />
         );

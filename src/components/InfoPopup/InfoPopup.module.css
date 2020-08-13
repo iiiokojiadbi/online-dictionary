@@ -1,0 +1,144 @@
+.popup {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.3s ease;
+}
+
+.popupDisabled {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.3s ease;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 5px;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 40px;
+}
+
+.close {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  transition: 0.3s;
+  outline: none;
+  box-sizing: border-box;
+  background-image: url(./../../images/close.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: transparent;
+  width: 58px;
+  height: 58px;
+  border: none;
+  padding: 0;
+  position: absolute;
+  top: -50px;
+  right: -50px;
+}
+
+.info {
+  max-height: 75vh;
+  max-width: 75vw;
+  overflow: hidden;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+}
+
+.title {
+  align-self: flex-end;
+  justify-self: center;
+  text-align: center;
+  font-size: 40px;
+  margin: 0;
+  padding-left: 20px;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.center {
+  align-self: center;
+  grid-row: 1 / -1;
+}
+
+.list {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+  margin: 0;
+  list-style-type: none;
+  grid-column: 2 / 3;
+  grid-row: 1 / -1;
+}
+
+.spelling {
+  font-size: 20px;
+  align-self: flex-start;
+  justify-self: center;
+  text-align: center;
+  padding-left: 20px;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.itemList {
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  gap: 30px;
+  background-color: #c5cae9;
+  padding: 5px 10px;
+  border-radius: 5px;
+  min-height: 50px;
+}
+
+.accent {
+  font-weight: bold;
+}
+
+.partOfSpeech {
+  justify-self: start;
+  font-size: 20px;
+}
+
+.definition {
+  font-size: 20px;
+}
+
+@media screen and (pointer: fine) {
+  .close:hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .close {
+    width: 48px;
+    height: 48px;
+    background-size: 48px 48px;
+    top: -40px;
+    right: -40px;
+  }
+}

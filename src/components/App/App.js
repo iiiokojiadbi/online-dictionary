@@ -5,12 +5,14 @@ import './../../fonts/PTSans.css';
 import DictionaryApi from './../../service/Api';
 import Header from './../Header/Header';
 import WordBoard from './../WordBoard/WordBoard';
+import InfoPopup from './../InfoPopup/InfoPopup';
 
 import { ListWordsContext } from './../../context/ListWordsContext';
 import { SearchValueContext } from './../../context/SearchValueContext';
 import { HandleStarredWordContext } from './../../context/HandleStarredWordContext';
 import { HandleSetPathOfSpeechContext } from './../../context/HandleSetPathOfSpeechContext';
 import { IsStarredContext } from './../../context/IsStarredContext';
+import { HandleOpenInfoPopup } from './../../context/HandleOpenInfoPopup';
 
 import Storage from './../../service/Storage';
 
@@ -25,6 +27,7 @@ export default class App extends Component {
     starredWords: [],
     isStarred: false,
     filterPathOfSpeech: '',
+    isInfoPopupOpen: false,
   };
 
   componentDidMount() {
@@ -35,6 +38,7 @@ export default class App extends Component {
       starredWords: starredWords,
       word: '',
       isStarred: window.location.pathname === '/starred',
+      wordInfo: null,
     });
   }
 
@@ -106,6 +110,26 @@ export default class App extends Component {
     }
   };
 
+  handleClickWord = ({ word }) => {
+    console.log(word);
+    this.handleInfoPopupOpen();
+    this.setState({
+      wordInfo: word,
+    });
+  };
+
+  handleInfoPopupOpen = () => {
+    this.setState({
+      isInfoPopupOpen: true,
+    });
+  };
+
+  handleClosePopup = () => {
+    this.setState({
+      isInfoPopupOpen: false,
+    });
+  };
+
   render() {
     const {
       listWords,
@@ -113,6 +137,8 @@ export default class App extends Component {
       word,
       isStarred,
       filterPathOfSpeech,
+      isInfoPopupOpen,
+      wordInfo,
     } = this.state;
     const uniqSortListWords = uniqSortFilter(listWords, word);
 
@@ -137,33 +163,42 @@ export default class App extends Component {
           toggleStarred={this.handleChangeOnStarred}
         />
         <Switch>
-          <IsStarredContext.Provider value={isStarred}>
-            <SearchValueContext.Provider
-              value={{
-                inputWord: word,
-                handleChangeSearch: this.handleChangeSearchWord,
-              }}
-            >
-              <HandleStarredWordContext.Provider value={this.handleStarredWord}>
-                <HandleSetPathOfSpeechContext.Provider
-                  value={this.handleSetPathOfSpeech}
+          <HandleOpenInfoPopup.Provider value={this.handleClickWord}>
+            <IsStarredContext.Provider value={isStarred}>
+              <SearchValueContext.Provider
+                value={{
+                  inputWord: word,
+                  handleChangeSearch: this.handleChangeSearchWord,
+                }}
+              >
+                <HandleStarredWordContext.Provider
+                  value={this.handleStarredWord}
                 >
-                  <Route exact path="/">
-                    <ListWordsContext.Provider value={newListWordsWithStar}>
-                      <WordBoard />
-                    </ListWordsContext.Provider>
-                  </Route>
-                  <Route path="/starred">
-                    <ListWordsContext.Provider
-                      value={filterPathOfSpeechStarredWord}
-                    >
-                      <WordBoard />
-                    </ListWordsContext.Provider>
-                  </Route>
-                </HandleSetPathOfSpeechContext.Provider>
-              </HandleStarredWordContext.Provider>
-            </SearchValueContext.Provider>
-          </IsStarredContext.Provider>
+                  <HandleSetPathOfSpeechContext.Provider
+                    value={this.handleSetPathOfSpeech}
+                  >
+                    <Route exact path="/">
+                      <ListWordsContext.Provider value={newListWordsWithStar}>
+                        <WordBoard />
+                      </ListWordsContext.Provider>
+                    </Route>
+                    <Route path="/starred">
+                      <ListWordsContext.Provider
+                        value={filterPathOfSpeechStarredWord}
+                      >
+                        <WordBoard />
+                      </ListWordsContext.Provider>
+                    </Route>
+                  </HandleSetPathOfSpeechContext.Provider>
+                </HandleStarredWordContext.Provider>
+              </SearchValueContext.Provider>
+            </IsStarredContext.Provider>
+            <InfoPopup
+              isOpen={isInfoPopupOpen}
+              onClose={this.handleClosePopup}
+              {...wordInfo}
+            />
+          </HandleOpenInfoPopup.Provider>
         </Switch>
       </div>
     );
