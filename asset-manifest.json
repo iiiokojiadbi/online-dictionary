@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/online-dictionary/static/css/main.5ab89a04.chunk.css",
-    "main.js": "/online-dictionary/static/js/main.aeb3d1ed.chunk.js",
-    "main.js.map": "/online-dictionary/static/js/main.aeb3d1ed.chunk.js.map",
+    "main.js": "/online-dictionary/static/js/main.da3f0fb5.chunk.js",
+    "main.js.map": "/online-dictionary/static/js/main.da3f0fb5.chunk.js.map",
     "runtime-main.js": "/online-dictionary/static/js/runtime-main.d94ff6a5.js",
     "runtime-main.js.map": "/online-dictionary/static/js/runtime-main.d94ff6a5.js.map",
     "static/js/2.6a50feab.chunk.js": "/online-dictionary/static/js/2.6a50feab.chunk.js",
     "static/js/2.6a50feab.chunk.js.map": "/online-dictionary/static/js/2.6a50feab.chunk.js.map",
     "index.html": "/online-dictionary/index.html",
-    "precache-manifest.6239cf1a323e796171230dc37668221b.js": "/online-dictionary/precache-manifest.6239cf1a323e796171230dc37668221b.js",
+    "precache-manifest.e992e3d3e44bdbee5ac4ef686ec0f9ad.js": "/online-dictionary/precache-manifest.e992e3d3e44bdbee5ac4ef686ec0f9ad.js",
     "service-worker.js": "/online-dictionary/service-worker.js",
     "static/css/main.5ab89a04.chunk.css.map": "/online-dictionary/static/css/main.5ab89a04.chunk.css.map",
     "static/js/2.6a50feab.chunk.js.LICENSE.txt": "/online-dictionary/static/js/2.6a50feab.chunk.js.LICENSE.txt",
@@ -21,6 +21,6 @@
     "static/js/runtime-main.d94ff6a5.js",
     "static/js/2.6a50feab.chunk.js",
     "static/css/main.5ab89a04.chunk.css",
-    "static/js/main.aeb3d1ed.chunk.js"
+    "static/js/main.da3f0fb5.chunk.js"
   ]
 }
