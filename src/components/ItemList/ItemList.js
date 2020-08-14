@@ -71,8 +71,8 @@ const ItemList = ({
     return (
       <li className={classes.item}>
         <span className={classes.findStar}>
-          There are no starred words. Find interesting words and click on the
-          star
+          Starred words were not found. Check the filters or find new words for
+          the starred list
         </span>
       </li>
     );

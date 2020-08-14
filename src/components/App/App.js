@@ -25,9 +25,9 @@ export default class App extends Component {
   state = {
     listWords: [],
     starredWords: [],
-    isStarred: false,
     filterPathOfSpeech: '',
     isInfoPopupOpen: false,
+    isStarred: false,
   };
 
   componentDidMount() {
@@ -36,7 +36,7 @@ export default class App extends Component {
     this.setState({
       starredWords: starredWords,
       word: '',
-      isStarred: window.location.pathname === '/starred',
+      isStarred: window.location.pathname === '/online-dictionary/starred',
       wordInfo: null,
     });
   }
